@@ -2,7 +2,7 @@
   <div class="sidebar">
     <div class="sidebar_logo">
       <img
-        src="https://pbs.twimg.com/profile_images/1053286305042448384/uNYzl0ig_400x400.jpg"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNwgsdwgSd4hZaChAz-dg2tiZZ2pVmPKo1P6PWiMLYf9vPnmooWvRusxMiWnFwhLoe--g&usqp=CAU"
         alt="Memsource"
       />
     </div>

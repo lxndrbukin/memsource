@@ -1,6 +1,7 @@
 <template>
   <div>
     <a href="#" @click="login">Login</a>
+    <a href="#" @click="logout">Logout</a>
   </div>
 </template>
 
@@ -9,6 +10,6 @@ import { mapActions } from 'vuex';
 
 export default {
   name: 'Home',
-  methods: mapActions(['login']),
+  methods: mapActions(['login', 'logout']),
 };
 </script>
