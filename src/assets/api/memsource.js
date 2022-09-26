@@ -5,20 +5,15 @@ import axios from 'axios';
 const API_URL = 'https://cloud.memsource.com/web/api2/v1';
 
 export default {
-  login: async () => {
-    // const query = {
-    //   client_id: CLIENT_ID,
-    //   response_type: 'code',
-    // };
-
-    await axios
+  login: async (username, password) => {
+    return await axios
       .post(`${API_URL}/auth/login`, {
-        userName: 'lxndrbukin',
-        password: 'REa1996TSu+-',
+        userName: username,
+        password: password,
       })
       .then((res) => {
-        localStorage.setItem('uid', res.data.user.uid);
         localStorage.setItem('token', res.data.token);
+        localStorage.setItem('uid', res.data.user.uid);
       });
   },
   logout: async () => {

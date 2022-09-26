@@ -5,9 +5,13 @@ const state = {
   token: localStorage.getItem('token'),
 };
 
+const getters = {
+  isLoggedIn: (state) => !!state.token,
+};
+
 const actions = {
-  login: ({ commit }) => {
-    memsourceApi.login();
+  login: async ({ commit }, { username, password }) => {
+    await memsourceApi.login(username, password);
     commit('setToken', localStorage.getItem('token'));
     commit('setUId', localStorage.getItem('uid'));
   },
@@ -29,6 +33,7 @@ const mutations = {
 
 export default {
   state,
+  getters,
   actions,
   mutations,
 };

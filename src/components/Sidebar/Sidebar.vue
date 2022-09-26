@@ -40,9 +40,12 @@ export default {
 .sidebar {
   width: 60px;
   height: 100%;
+  border-right: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
 
   .sidebar_logo {
-    margin: auto;
+    margin: 0 auto;
     width: fit-content;
 
     img {
@@ -55,14 +58,17 @@ export default {
   .sidebar_menu {
     display: flex;
     flex-direction: column;
+    margin: auto auto auto auto;
 
     .sidebar_menu-btn {
-      width: 40px;
-      height: 40px;
+      width: 100%;
+      height: 50px;
       justify-content: center;
       display: flex;
       flex-direction: column;
-      margin: auto;
+      padding: 5px;
+      font-size: 13px;
+      text-align: center;
 
       i {
         margin: auto;
