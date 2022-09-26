@@ -38,14 +38,14 @@ export default {
 
 <style lang="scss">
 .sidebar {
-  width: 60px;
+  width: 70px;
   height: 100%;
   border-right: 1px solid #eee;
   display: flex;
   flex-direction: column;
 
   .sidebar_logo {
-    margin: 0 auto;
+    margin: 10px auto;
     width: fit-content;
 
     img {
@@ -58,10 +58,10 @@ export default {
   .sidebar_menu {
     display: flex;
     flex-direction: column;
-    margin: auto auto auto auto;
+    margin: 33vh auto auto auto;
 
     .sidebar_menu-btn {
-      width: 100%;
+      width: 50px;
       height: 50px;
       justify-content: center;
       display: flex;

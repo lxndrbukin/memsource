@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="login">
     <LoginForm />
   </div>
 </template>
@@ -16,3 +16,10 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.login {
+  display: flex;
+  margin: auto;
+}
+</style>

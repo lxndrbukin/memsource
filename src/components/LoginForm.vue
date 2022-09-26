@@ -1,5 +1,5 @@
 <template>
-  <form v-if="!isLoggedIn" @submit="submit">
+  <form v-if="!isLoggedIn" @submit="submit" class="form">
     <div class="form-field">
       <label>Username</label>
       <input type="text" name="username" />
@@ -32,3 +32,27 @@ export default {
   }
 }
 </script>
+
+<style lang='scss'>
+.form {
+  margin: auto;
+  width: fit-content;
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+
+    input {
+      height: 25px;
+      width: 200px;
+      border-radius: 5px;
+      border: 1px solid #333;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+</style>
