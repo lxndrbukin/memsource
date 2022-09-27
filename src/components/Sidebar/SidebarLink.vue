@@ -11,3 +11,11 @@ export default {
   props: ['link'],
 };
 </script>
+
+<style lan="scss">
+.router-link-active {
+  background-color: #484848;
+  border-radius: 5px;
+  color: #14b4fc !important;
+}
+</style>

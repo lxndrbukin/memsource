@@ -4,7 +4,11 @@ import { store } from './store';
 import App from './App.vue';
 import Home from './components/Home.vue';
 
-const routes = [{ path: '/', component: Home }];
+const routes = [
+  { path: '/', component: Home },
+  { path: '/projects', component: Home },
+  { path: '/jobs', component: Home },
+];
 
 export const router = createRouter({
   history: createWebHistory(),

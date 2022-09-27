@@ -10,13 +10,13 @@
 
 <script>
 import Sidebar from './components/Sidebar/Sidebar.vue';
-import Topbar from './components/Topbar.vue';
+import Topbar from './components/Topbar/Topbar.vue';
 
 export default {
   name: 'App',
   components: {
     Sidebar,
-    Topbar
+    Topbar,
   },
 };
 </script>
@@ -24,6 +24,10 @@ export default {
 <style lang="scss">
 body {
   margin: 0;
+
+  a {
+    text-decoration: none;
+  }
 }
 
 #app {
@@ -38,7 +42,6 @@ body {
       width: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: center;
     }
   }
 }

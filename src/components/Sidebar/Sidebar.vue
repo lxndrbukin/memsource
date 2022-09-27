@@ -43,6 +43,7 @@ export default {
   border-right: 1px solid #eee;
   display: flex;
   flex-direction: column;
+  background-color: #333;
 
   .sidebar_logo {
     margin: 10px auto;
@@ -61,14 +62,15 @@ export default {
     margin: 33vh auto auto auto;
 
     .sidebar_menu-btn {
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
       justify-content: center;
       display: flex;
       flex-direction: column;
       padding: 5px;
       font-size: 13px;
       text-align: center;
+      color: #fff;
 
       i {
         margin: auto;
