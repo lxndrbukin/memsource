@@ -8,8 +8,7 @@ const state = {
 const getters = {};
 
 const actions = {
-  fetchJobs: async ({ rootState, commit }) => {
-    const { token } = rootState.auth;
+  fetchJobs: async ({ rootState, commit }, token) => {
     const projectList = JSON.parse(
       JSON.stringify(rootState.projects.projectList)
     );

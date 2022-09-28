@@ -11,11 +11,13 @@ export default {
     ...mapActions(['fetchJobs', 'fetchProjects']),
   },
   computed: {
-    ...mapGetters(['token']),
+    ...mapGetters(['token', 'projectList']),
   },
   created() {
     this.fetchProjects(this.token);
-    this.fetchJobs();
+  },
+  mounted() {
+    this.fetchJobs(this.token);
   },
 };
 </script>
