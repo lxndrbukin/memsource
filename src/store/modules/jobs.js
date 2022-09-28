@@ -1,11 +1,12 @@
 import memsourceJobs from '../../assets/api/memsource/jobs';
-import memsourceProjects from '../../assets/api/memsource/projects';
 
 const state = {
   jobList: [],
 };
 
-const getters = {};
+const getters = {
+  jobList: (state) => state.jobList,
+};
 
 const actions = {
   fetchJobs: async ({ rootState, commit }, token) => {
@@ -14,7 +15,7 @@ const actions = {
     );
     const jobList = [];
     await projectList.map(async (project) => {
-      await memsourceJobs.fetchJobs(project.uid, token).then((res) => {
+      memsourceJobs.fetchJobs(project.uid, token).then((res) => {
         res.data.content.map((job) => {
           jobList.push(job);
         });

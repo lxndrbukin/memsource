@@ -28,10 +28,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['fetchProjects']),
+    ...mapActions(['fetchProjectsAndJobs']),
   },
   created() {
-    this.fetchProjects(this.token);
+    if (this.projectList.length === 0) {
+      this.fetchProjectsAndJobs();
+    }
   },
   components: {
     ProjectListItem,

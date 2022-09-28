@@ -9,6 +9,5 @@ export const store = createStore({
     auth,
     users,
     projects,
-    jobs,
   },
 });
