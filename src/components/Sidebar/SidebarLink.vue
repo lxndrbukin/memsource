@@ -12,10 +12,12 @@ export default {
 };
 </script>
 
-<style lan="scss">
+<style lang="scss" scoped>
+@import '../../assets/SCSS/variables.scss';
+
 .router-link-active {
-  background-color: #484848;
-  border-radius: 5px;
-  color: #14b4fc !important;
+  background-color: $lighter-dark;
+  border-radius: 10px;
+  color: $base-blue !important;
 }
 </style>

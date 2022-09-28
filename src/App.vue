@@ -24,6 +24,7 @@ export default {
 <style lang="scss">
 body {
   margin: 0;
+  font-family: 'Inter', sans-serif;
 
   a {
     text-decoration: none;

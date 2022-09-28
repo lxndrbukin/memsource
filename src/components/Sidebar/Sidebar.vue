@@ -27,9 +27,6 @@ export default {
       sidebarLinks,
     };
   },
-  created() {
-    console.log(sidebarLinks);
-  },
   components: {
     SidebarLink,
   },
@@ -52,7 +49,7 @@ export default {
     img {
       height: 50px;
       width: 50px;
-      border-radius: 5px;
+      border-radius: 10px;
     }
   }
 
@@ -68,9 +65,10 @@ export default {
       display: flex;
       flex-direction: column;
       padding: 5px;
-      font-size: 13px;
+      font-size: 11px;
       text-align: center;
       color: #fff;
+      margin: 5px;
 
       i {
         margin: auto;

@@ -1,10 +1,14 @@
 import { createStore } from 'vuex';
 import auth from './modules/auth';
-import user from './modules/user';
+import users from './modules/users';
+import projects from './modules/projects';
+import jobs from './modules/jobs';
 
 export const store = createStore({
   modules: {
     auth,
-    user,
+    users,
+    projects,
+    jobs,
   },
 });

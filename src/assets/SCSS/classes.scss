@@ -1,0 +1,41 @@
+@import './variables.scss';
+
+.row {
+  display: flex;
+}
+
+.table {
+  // border: $border;
+  border-spacing: 0;
+  // border-radius: 10px;
+  font-size: 14px;
+
+  .table-row {
+    border: $border;
+
+    &:first-child {
+      border-radius: 10px 10px 0 0;
+      border-bottom: $border;
+      padding: 0;
+    }
+
+    &:hover {
+      background-color: $light-grey;
+
+      td {
+        border-right: 1px solid #fff;
+      }
+    }
+
+    td,
+    th {
+      border-right: $border;
+      border-bottom: $border;
+      padding: 5px;
+
+      &:last-child {
+        border-right: 0;
+      }
+    }
+  }
+}

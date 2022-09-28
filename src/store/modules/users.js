@@ -1,19 +1,19 @@
-import memsourceApi from '../../assets/api/memsource';
+import memsourceUser from '../../assets/api/memsource/users';
 
 const state = {
-  user: {},
+  currentUser: {},
 };
 
 const getters = {
-  user: (state) => state.user,
+  currentUser: (state) => state.currentUser,
 };
 
 const actions = {
   fetchUser: async ({ rootState, commit }) => {
     const { uid, token } = rootState.auth;
-    const user = await memsourceApi.fetchUser(uid, token);
+    const user = await memsourceUser.fetchUser(uid, token);
     const { firstName, lastName, role, email } = user.data;
-    commit('setUser', {
+    commit('setCurrentUser', {
       firstName,
       lastName,
       email,
@@ -23,8 +23,8 @@ const actions = {
 };
 
 const mutations = {
-  setUser: (state, user) => {
-    state.user = user;
+  setCurrentUser: (state, user) => {
+    state.currentUser = user;
   },
 };
 
