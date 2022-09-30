@@ -16,8 +16,7 @@ export default {
 @import '../../assets/SCSS/variables.scss';
 
 .router-link-active {
-  background-color: $lighter-dark;
+  background-color: $light-grey;
   border-radius: 10px;
-  color: $base-blue !important;
 }
 </style>

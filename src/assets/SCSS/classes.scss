@@ -5,22 +5,30 @@
 }
 
 .table {
-  // border: $border;
   border-spacing: 0;
-  // border-radius: 10px;
+  width: fit-content;
+
   font-size: 14px;
 
   .table-row {
     border: $border;
 
+    &:hover {
+      cursor: pointer;
+    }
+
     &:first-child {
       border-radius: 10px 10px 0 0;
       border-bottom: $border;
       padding: 0;
+
+      &:hover {
+        background-color: #fff;
+      }
     }
 
     &:hover {
-      background-color: $light-grey;
+      background-color: $lighter-grey;
 
       td {
         border-right: 1px solid #fff;

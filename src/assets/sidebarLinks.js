@@ -14,4 +14,9 @@ export const sidebarLinks = [
     icon: 'bi-briefcase',
     path: '/jobs',
   },
+  {
+    name: 'Settings',
+    icon: 'bi-gear',
+    path: '/settings',
+  },
 ];

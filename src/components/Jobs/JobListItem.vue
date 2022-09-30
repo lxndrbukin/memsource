@@ -1,9 +1,7 @@
 <template>
   <tr class="table-row">
-    <td>{{ job.filename }}</td>
-    <td>{{ date }}</td>
-    <td></td>
-    <td></td>
+    <td>{{ truncatedString(job.filename) }}</td>
+    <td>{{ date() }}</td>
   </tr>
 </template>
 
@@ -11,7 +9,13 @@
 export default {
   name: 'JobListItem',
   props: ['job'],
-  computed: {
+  methods: {
+    truncatedString(string) {
+      if (string.length > 50) {
+        return `${string.substring(0, 49)}...`;
+      }
+      return string;
+    },
     date() {
       const jsonDate = new Date(this.job.dateDue);
       const day = jsonDate.getDate();
@@ -24,6 +28,5 @@ export default {
       return date;
     },
   },
-
-}
+};
 </script>

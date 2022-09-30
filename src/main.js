@@ -1,7 +1,6 @@
 import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import { store } from './store';
-import { clickOutside } from './assets/clickOutside';
 import './assets/SCSS/classes.scss';
 import App from './App.vue';
 import Home from './components/Home.vue';
@@ -22,5 +21,5 @@ export const router = createRouter({
 const app = createApp(App);
 app.use(store);
 app.use(router);
-app.directive('click-outside', clickOutside);
+
 app.mount('#app');

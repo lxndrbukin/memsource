@@ -1,9 +1,11 @@
+import axios from 'axios';
 import memsourceProjects from '../../assets/api/memsource/projects';
 import memsourceJobs from '../../assets/api/memsource/jobs';
 
 const state = {
   projectList: [],
   jobList: [],
+  jobFilter: localStorage.getItem('jobFilter') || '',
 };
 
 const getters = {
@@ -12,29 +14,29 @@ const getters = {
 };
 
 const actions = {
-  fetchProjectsAndJobs: async ({ rootState, commit }) => {
+  fetchProjectsAndJobs: async ({ rootState, commit, state }) => {
     const response = await memsourceProjects.fetchProjects(
       rootState.auth.token
     );
     const projects = response.data.content;
     const projectList = [];
-    const jobList = [];
-    if (projects.length !== 0) {
-      projects.map(async (project) => {
-        projectList.push(project);
-        const res = await memsourceJobs.fetchJobs(
-          project.uid,
-          rootState.auth.token
-        );
-        const jobsContent = res.data.content;
-        await jobsContent.map((job) => {
-          jobList.push(job);
-          project['jobs'] = [];
-          project['jobs'].push(job);
+    projects.map((project) => {
+      projectList.push(project);
+    });
+    projectList.map(async (project) => {
+      await memsourceJobs
+        .fetchJobs(project.uid, state.jobFilter, rootState.auth.token)
+        .then((jobs) => {
+          const jobList = jobs.data.content;
+          jobList.map(async (job) => {
+            await axios
+              .get(
+                `https://cloud.memsource.com/web/api2/v1/projects/${project.uid}/jobs/${job.uid}?token=${rootState.auth.token}`
+              )
+              .then((res) => commit('setJobList', res.data));
+          });
         });
-      });
-    }
-    commit('setJobList', jobList);
+    });
     commit('setProjectList', projectList);
   },
 };
@@ -43,8 +45,8 @@ const mutations = {
   setProjectList: (state, projectList) => {
     state.projectList = projectList;
   },
-  setJobList: (state, jobList) => {
-    state.jobList = jobList;
+  setJobList: (state, job) => {
+    state.jobList.push(job);
   },
 };
 

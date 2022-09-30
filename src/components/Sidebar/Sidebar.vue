@@ -1,11 +1,17 @@
 <template>
   <div class="sidebar">
-    <div class="sidebar_logo">
+    <router-link to="/" class="sidebar_logo">
       <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNwgsdwgSd4hZaChAz-dg2tiZZ2pVmPKo1P6PWiMLYf9vPnmooWvRusxMiWnFwhLoe--g&usqp=CAU"
+        src="https://play-lh.googleusercontent.com/aGzbvzSPjyNSIt5pXw1WBJaLM1PvpLBvlJnMr7PWnbHFbTvBYStf42ZkpU8GrdXuIIoK"
         alt="Memsource"
+        class="bet365-logo"
       />
-    </div>
+      <img
+        src="../../assets/images/memsource-logo.png"
+        alt="Memsource"
+        class="memsource-logo"
+      />
+    </router-link>
     <div class="sidebar_menu">
       <SidebarLink
         v-for="(link, idx) in sidebarLinks"
@@ -34,22 +40,33 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../../assets/SCSS/variables.scss';
+
 .sidebar {
-  width: 70px;
+  width: 80px;
   height: 100%;
-  border-right: 1px solid #eee;
+  border-right: 1px solid $light-grey;
   display: flex;
   flex-direction: column;
-  background-color: #333;
+  background-color: $lighter-grey;
 
   .sidebar_logo {
     margin: 10px auto;
     width: fit-content;
+    position: relative;
+    height: 50px;
+    width: 50px;
 
-    img {
+    .bet365-logo {
       height: 50px;
       width: 50px;
       border-radius: 10px;
+    }
+
+    .memsource-logo {
+      // width: 20px;
+      margin-left: -5px;
+      margin-top: -15px;
     }
   }
 
@@ -67,7 +84,7 @@ export default {
       padding: 5px;
       font-size: 11px;
       text-align: center;
-      color: #fff;
+      color: $base-dark;
       margin: 5px;
 
       i {

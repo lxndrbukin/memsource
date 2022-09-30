@@ -1,27 +1,15 @@
 <template>
   <div class="topbar-user">
     <div @click="dropdown = !dropdown" class="topbar-user_avatar">
-      <span class="topbar-user_avatar-initials">{{
-        currentUser.firstName
-          ? `${currentUser.firstName[0]}${currentUser.lastName[0]}`
-          : ''
-      }}</span>
+      <span class="topbar-user_avatar-initials">{{ abbreviatedName }}</span>
     </div>
     <div v-if="dropdown" class="topbar-user_dropdown">
       <div class="row">
         <div class="topbar-user_avatar">
-          <span class="topbar-user_avatar-initials">{{
-            currentUser.firstName
-              ? `${currentUser.firstName[0]}${currentUser.lastName[0]}`
-              : ''
-          }}</span>
+          <span class="topbar-user_avatar-initials">{{ abbreviatedName }}</span>
         </div>
         <div class="topbar-user_fullname">
-          {{
-            currentUser
-              ? `${currentUser.firstName} ${currentUser.lastName}`
-              : ''
-          }}
+          {{ fullName }}
         </div>
       </div>
       <div class="topbar-user_dropdown-links row">
@@ -54,7 +42,27 @@ export default {
     closeDropdown() {
       dropdown = false;
     },
+    abbreviatedName() {
+      const { currentUser } = this;
+      return currentUser.firstName
+        ? `${currentUser.firstName[0]}${currentUser.lastName[0]}`
+        : '';
+    },
+    fullName() {
+      const { currentUser } = this;
+      return currentUser
+        ? `${currentUser.firstName} ${currentUser.lastName}`
+        : '';
+    },
     ...mapGetters(['currentUser']),
+  },
+  mounted() {
+    let self = this;
+    window.addEventListener('click', (e) => {
+      if (!self.$el.contains(e.target)) {
+        self.dropdown = false;
+      }
+    });
   },
   created() {
     this.fetchUser();

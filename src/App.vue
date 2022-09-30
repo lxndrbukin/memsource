@@ -3,7 +3,9 @@
     <Sidebar />
     <div class="container">
       <Topbar />
-      <router-view />
+      <div class="view-container">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
@@ -33,7 +35,7 @@ body {
 
 #app {
   height: 100vh;
-  width: 100vw;
+  // width: 100vw;
 
   .app-wrapper {
     display: flex;
@@ -43,6 +45,10 @@ body {
       width: 100%;
       display: flex;
       flex-direction: column;
+
+      .view-container {
+        height: calc(100% - 70px);
+      }
     }
   }
 }
