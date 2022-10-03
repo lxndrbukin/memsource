@@ -1,11 +1,10 @@
-import axios from 'axios';
 import memsourceProjects from '../../assets/api/memsource/projects';
 import memsourceJobs from '../../assets/api/memsource/jobs';
 
 const state = {
   projectList: [],
   jobList: [],
-  jobFilter: localStorage.getItem('jobFilter') || '',
+  jobCategory: localStorage.getItem('jobCategory'),
 };
 
 const getters = {
@@ -14,7 +13,7 @@ const getters = {
 };
 
 const actions = {
-  fetchProjectsAndJobs: async ({ rootState, commit, state }) => {
+  fetchProjectsAndJobs: async ({ rootState, commit, state }, category) => {
     const response = await memsourceProjects.fetchProjects(
       rootState.auth.token
     );
@@ -24,17 +23,28 @@ const actions = {
       projectList.push(project);
     });
     projectList.map(async (project) => {
+      commit('clearJobList');
+      if (localStorage.getItem('jobCategory')) {
+        commit('setJobCategory', localStorage.getItem('jobCategory'));
+      } else {
+        commit('setJobCategory', category);
+      }
       await memsourceJobs
-        .fetchJobs(project.uid, state.jobFilter, rootState.auth.token)
+        .fetchJobs(project.uid, state.jobCategory, rootState.auth.token)
         .then((jobs) => {
           const jobList = jobs.data.content;
-          jobList.map(async (job) => {
-            await axios
-              .get(
-                `https://cloud.memsource.com/web/api2/v1/projects/${project.uid}/jobs/${job.uid}?token=${rootState.auth.token}`
-              )
-              .then((res) => commit('setJobList', res.data));
-          });
+          if (state.jobCategory === 'ALL' || !state.jobCategory) {
+            commit('setJobCategory', 'ALL');
+            jobList.map(async (job) => {
+              commit('setJobList', job);
+            });
+          } else {
+            jobList
+              .filter((job) => job.status === state.jobCategory)
+              .map(async (job) => {
+                commit('setJobList', job);
+              });
+          }
         });
     });
     commit('setProjectList', projectList);
@@ -47,6 +57,12 @@ const mutations = {
   },
   setJobList: (state, job) => {
     state.jobList.push(job);
+  },
+  setJobCategory: (state, category) => {
+    state.jobCategory = category;
+  },
+  clearJobList: (state) => {
+    state.jobList = [];
   },
 };
 

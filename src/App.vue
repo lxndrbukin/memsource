@@ -11,14 +11,31 @@
 </template>
 
 <script>
+import './assets/SCSS/scrollbar.scss';
+import { sidebarLinks } from './assets/sidebarLinks';
 import Sidebar from './components/Sidebar/Sidebar.vue';
 import Topbar from './components/Topbar/Topbar.vue';
 
 export default {
+  data() {
+    return {
+      tabTitle: '',
+    };
+  },
   name: 'App',
   components: {
     Sidebar,
     Topbar,
+  },
+  watch: {
+    $route(to, from) {
+      for (let i = 0; i < sidebarLinks.length; i++) {
+        if (window.location.pathname === sidebarLinks[i].path) {
+          this.tabTitle = sidebarLinks[i].name;
+          document.title = `bet365 Memsource - ${this.tabTitle}`;
+        }
+      }
+    },
   },
 };
 </script>
@@ -35,7 +52,7 @@ body {
 
 #app {
   height: 100vh;
-  // width: 100vw;
+  overflow: hidden;
 
   .app-wrapper {
     display: flex;
@@ -47,7 +64,7 @@ body {
       flex-direction: column;
 
       .view-container {
-        height: calc(100% - 70px);
+        height: 100%;
       }
     }
   }

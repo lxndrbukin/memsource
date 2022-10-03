@@ -77,7 +77,7 @@ export default {
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: 5px;
+  margin: 5px 15px 5px 5px;
 
   .topbar-user_avatar {
     height: 40px;

@@ -41,9 +41,35 @@
       border-bottom: $border;
       padding: 5px;
 
+      &:first-child {
+        min-width: 400px;
+        max-width: 500px;
+      }
+
       &:last-child {
         border-right: 0;
       }
     }
+  }
+}
+
+.date {
+  display: flex;
+  width: 170px;
+
+  .date-day {
+    width: 30px;
+    text-align: center;
+  }
+
+  .date-full {
+    width: 90px;
+    text-align: center;
+    margin: auto;
+  }
+
+  .date-time {
+    width: 40px;
+    text-align: center;
   }
 }

@@ -2,12 +2,12 @@
   <div class="sidebar">
     <router-link to="/" class="sidebar_logo">
       <img
-        src="https://play-lh.googleusercontent.com/aGzbvzSPjyNSIt5pXw1WBJaLM1PvpLBvlJnMr7PWnbHFbTvBYStf42ZkpU8GrdXuIIoK"
+        src="../../assets/images/b365logo.png"
         alt="Memsource"
         class="bet365-logo"
       />
       <img
-        src="../../assets/images/memsource-logo.png"
+        src="../../assets/images/memsourcelogo.png"
         alt="Memsource"
         class="memsource-logo"
       />
@@ -55,18 +55,22 @@ export default {
     width: fit-content;
     position: relative;
     height: 50px;
-    width: 50px;
+    width: 70px;
 
     .bet365-logo {
       height: 50px;
       width: 50px;
       border-radius: 10px;
+      display: block;
+      margin: auto;
     }
 
     .memsource-logo {
       // width: 20px;
       margin-left: -5px;
       margin-top: -15px;
+      display: block;
+      margin: auto;
     }
   }
 

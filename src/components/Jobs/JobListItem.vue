@@ -1,11 +1,13 @@
 <template>
   <tr class="table-row">
     <td>{{ truncatedString(job.filename) }}</td>
-    <td>{{ date() }}</td>
+    <td v-html="deadline(job.dateDue)"></td>
   </tr>
 </template>
 
 <script>
+import { date } from '../../assets/functions/date';
+
 export default {
   name: 'JobListItem',
   props: ['job'],
@@ -16,16 +18,8 @@ export default {
       }
       return string;
     },
-    date() {
-      const jsonDate = new Date(this.job.dateDue);
-      const day = jsonDate.getDate();
-      const month =
-        jsonDate.getMonth() + 1 < 10
-          ? `0${jsonDate.getMonth() + 1}`
-          : jsonDate.getMonth() + 1;
-      const year = jsonDate.getFullYear();
-      const date = `${day}/${month}/${year}`;
-      return date;
+    deadline(newDate) {
+      return date(newDate);
     },
   },
 };
