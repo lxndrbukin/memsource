@@ -3,7 +3,8 @@ export const date = (newDate) => {
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   // Day/Month/Year
   const jsonDate = new Date(newDate);
-  const monthDay = jsonDate.getDate();
+  const monthDay =
+    jsonDate.getDate() < 10 ? `0${jsonDate.getDate()}` : jsonDate.getDate();
   const month =
     jsonDate.getMonth() + 1 < 10
       ? `0${jsonDate.getMonth() + 1}`
@@ -20,6 +21,11 @@ export const date = (newDate) => {
     jsonDate.getMinutes() < 10
       ? `0${jsonDate.getMinutes()}`
       : jsonDate.getMinutes();
-  const date = `<div class="date"><div class="date-day">${days[day]}</div> <div class="date-full">${monthDay}/${month}/${year}</div> <div class="date-time">${hour}:${minute}</div></div>`;
+  const date = `
+  <div class="date">
+    <div class="date-day">${days[day]}</div>
+    <div class="date-full">${monthDay}/${month}</div>
+    <div class="date-time">@ ${hour}:${minute}</div>
+  </div>`;
   return date;
 };

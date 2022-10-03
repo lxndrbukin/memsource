@@ -4,11 +4,17 @@
       <div class="job-info_basic">
         <div class="job-info_basic-line">
           <span class="job-info_basic-line_header">Deadline:</span>
-          <span v-html="deadline(jobInfo.dateDue)"></span>
+          <span
+            class="job-info_basic-line_info"
+            v-html="deadline(jobInfo.dateDue)"
+          ></span>
         </div>
         <div class="job-info_basic-line">
           <span class="job-info_basic-line_header">Language:</span>
-          <span>{{ jobInfo.targetLang.toUpperCase() }}</span>
+          <span class="job-info_basic-line_info"
+            >EN <i class="bi bi-arrow-right"></i>
+            {{ jobInfo.targetLang.toUpperCase() }}</span
+          >
         </div>
       </div>
       <div class="job-info_message">
@@ -69,14 +75,20 @@ export default {
     background-color: $lighter-grey;
     width: fit-content;
     padding: 10px;
+    width: 220px;
   }
 
   .job-info_basic-line {
+    padding: 5px;
     display: flex;
+    flex-direction: column;
 
     .job-info_basic-line_header {
       width: 120px;
       font-weight: bold;
+    }
+
+    .job-info_basic-line_info {
     }
   }
 
