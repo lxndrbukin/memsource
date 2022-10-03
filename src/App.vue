@@ -59,7 +59,7 @@ body {
     height: 100%;
 
     .container {
-      width: 100%;
+      width: calc(100% - 80px);
       display: flex;
       flex-direction: column;
 

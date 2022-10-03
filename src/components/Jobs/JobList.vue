@@ -15,7 +15,7 @@
             </th>
           </tr>
           <JobListItem
-            v-for="job in jobList"
+            v-for="job in sortedJobList"
             :key="job.filename"
             :job="job"
             @click="selectJob(job)"
@@ -59,6 +59,10 @@ export default {
   },
   computed: {
     ...mapGetters(['jobList', 'projectList']),
+    sortedJobList() {
+      const { jobList } = this;
+      return jobList.sort((a, b) => a.filename.localeCompare(b.filename));
+    }
   },
   methods: {
     ...mapActions(['fetchProjectsAndJobs']),
@@ -108,19 +112,52 @@ export default {
 
   .jobs-filter {
     width: 100%;
-    height: 30px;
+    height: 35px;
     border-bottom: $border;
     background-color: $lighter-grey;
     display: flex;
 
     .jobs-category {
-      height: 30px;
-      background: transparent;
-      border: none;
-      text-align: center;
+      margin: auto 2px;
+      font-size: 14px;
 
-      &:focus {
-        outline: none;
+      select {
+        height: 30px;
+        border: $border;
+        border-radius: 5px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    .jobs-refresh {
+      margin: auto 2px;
+
+      button {
+        height: 30px;
+        border-radius: 5px;
+        border: $border;
+
+        i {
+          font-size: 15px;
+        }
+      }
+    }
+
+    .jobs-sortby {
+      margin: auto 2px;
+      font-size: 14px;
+
+      select {
+        height: 30px;
+        border-radius: 5px;
+        border: $border;
+
+        &:focus {
+          outline: none;
+        }
       }
     }
 
@@ -150,9 +187,10 @@ export default {
   .jobs-inbox_wrapper {
     display: flex;
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 107px);
 
     .jobs-inbox {
+      height: 100%;
       width: 40%;
       overflow-y: scroll;
 

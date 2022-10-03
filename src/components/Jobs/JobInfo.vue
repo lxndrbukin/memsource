@@ -12,7 +12,7 @@
         <div class="job-info_basic-line">
           <span class="job-info_basic-line_header">Language:</span>
           <span class="job-info_basic-line_info"
-            >EN <i class="bi bi-arrow-right"></i>
+            >{{ project.sourceLang.toUpperCase() }} <i class="bi bi-arrow-right"></i>
             {{ jobInfo.targetLang.toUpperCase() }}</span
           >
         </div>

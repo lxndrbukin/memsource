@@ -10,6 +10,7 @@ const state = {
 const getters = {
   projectList: (state) => state.projectList,
   jobList: (state) => state.jobList,
+  jobCategory: (state) => state.jobCategory,
 };
 
 const actions = {
