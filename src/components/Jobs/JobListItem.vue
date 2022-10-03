@@ -1,5 +1,5 @@
 <template>
-  <tr class="table-row">
+  <tr v-if="job.filename.toLowerCase().includes(searchReq.toLowerCase())" class="table-row">
     <td>{{ truncatedString(job.filename) }}</td>
     <td v-html="deadline(job.dateDue)"></td>
   </tr>
@@ -10,7 +10,7 @@ import { date } from '../../assets/functions/date';
 
 export default {
   name: 'JobListItem',
-  props: ['job'],
+  props: ['job', 'searchReq'],
   methods: {
     truncatedString(string) {
       if (string.length > 50) {

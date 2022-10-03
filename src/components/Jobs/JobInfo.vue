@@ -22,7 +22,7 @@
           <h5>Hello Team,</h5>
           <p>
             Could you please translate the below file(s) as part of the
-            <b>[projectName]</b> project.
+            <b>{{ project.name }}</b> project?
           </p>
         </span>
       </div>
@@ -48,7 +48,7 @@ export default {
       translationUrl: `https://cloud.memsource.com/web/job/${this.jobInfo.uid}/translate`,
     };
   },
-  props: ['jobInfo'],
+  props: ['jobInfo', 'project'],
   methods: {
     deadline(newDate) {
       return date(newDate);

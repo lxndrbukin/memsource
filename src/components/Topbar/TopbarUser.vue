@@ -106,6 +106,7 @@ export default {
     border-radius: 10px;
     padding: 5px;
     top: 58px;
+    z-index: 1;
 
     &:before {
       content: '';

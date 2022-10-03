@@ -1,24 +1,11 @@
 <template>
   <div class="jobs">
-    <div class="jobs-filter">
-      <select
-        class="jobs-category"
-        @change="(e) => setCategory(e.target.value.toUpperCase())"
-      >
-        <option
-          v-for="option in jobOptions"
-          :selected="option.toUpperCase() === currentCategory"
-          :key="option"
-          :value="option"
-        >
-          {{ option }}
-        </option>
-      </select>
-      <div class="jobs-search">
-        <input type="text" />
-        <i class="bi bi-search"></i>
-      </div>
-    </div>
+    <JobFilter
+      :jobOptions="jobOptions"
+      :currentCategory="currentCategory"
+      @search="search"
+      @setCategory="setCategory"
+    />
     <div class="jobs-inbox_wrapper">
       <div class="jobs-inbox">
         <table class="table">
@@ -32,6 +19,7 @@
             :key="job.filename"
             :job="job"
             @click="selectJob(job)"
+            :searchReq="searchRequest"
           />
         </table>
       </div>
@@ -39,6 +27,7 @@
         <JobInfo
           v-if="selectedJob"
           :jobInfo="selectedJob"
+          :project="currentProject"
           :uid="selectedJob.uid"
         />
         <JobInfoDummy v-else />
@@ -49,6 +38,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import JobFilter from './JobFilter.vue';
 import JobListItem from './JobListItem.vue';
 import JobInfo from './JobInfo.vue';
 import JobInfoDummy from './JobInfoDummy.vue';
@@ -57,19 +47,31 @@ export default {
   name: 'JobList',
   data() {
     return {
-      isLoaded: false,
       tableHeaders: ['Name', 'Deadline'],
       jobOptions: ['All', 'New', 'Accepted', 'Completed'],
+      searchRequest: ' ',
       selectedJob: null,
+      currentProject: null,
       currentCategory: localStorage.getItem('jobCategory')
         ? localStorage.getItem('jobCategory').toUpperCase()
         : 'ALL',
     };
   },
+  computed: {
+    ...mapGetters(['jobList', 'projectList']),
+  },
   methods: {
     ...mapActions(['fetchProjectsAndJobs']),
     selectJob(job) {
       this.selectedJob = JSON.parse(JSON.stringify(job));
+      const projectList = JSON.parse(JSON.stringify(this.projectList));
+      for (let i = 0; i < projectList.length; i++) {
+        projectList[i].jobs.filter(job => {
+          if (job.filename === this.selectedJob.filename) {
+            this.currentProject = projectList[i];
+          }
+        });
+      }
     },
     setCategory(category) {
       localStorage.setItem('jobCategory', category);
@@ -79,12 +81,11 @@ export default {
         this.fetchProjectsAndJobs(jobCategory);
       }
     },
-    selectedCategory(option, currentCategory) {
-      option.toLowerCase() === currentCategory.toLowerCase() ? true : false;
-    },
-  },
-  computed: {
-    ...mapGetters(['jobList']),
+    search(searchRequest) {
+      this.searchRequest = searchRequest;
+      console.log(this.searchRequest);
+      return this.searchRequest;
+    }
   },
   created() {
     if (this.jobList.length === 0) {
@@ -93,11 +94,11 @@ export default {
       this.fetchProjectsAndJobs();
     }
   },
-  components: { JobListItem, JobInfo, JobInfoDummy },
+  components: { JobFilter, JobListItem, JobInfo, JobInfoDummy },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../../assets/SCSS/variables.scss';
 
 .jobs {
@@ -130,6 +131,8 @@ export default {
 
       input {
         height: 24px;
+        width: 200px;
+        border: $border;
 
         &:focus {
           outline: none;
@@ -139,7 +142,7 @@ export default {
       i {
         position: absolute;
         right: 0;
-        margin: 5px;
+        margin: 4px;
       }
     }
   }

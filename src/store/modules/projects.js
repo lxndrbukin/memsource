@@ -33,6 +33,7 @@ const actions = {
         .fetchJobs(project.uid, state.jobCategory, rootState.auth.token)
         .then((jobs) => {
           const jobList = jobs.data.content;
+          project['jobs'] = jobList;
           if (state.jobCategory === 'ALL' || !state.jobCategory) {
             commit('setJobCategory', 'ALL');
             jobList.map(async (job) => {
