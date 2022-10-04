@@ -11,7 +11,7 @@
       <div class="jobs-inbox">
         <table class="table">
           <tr class="table-row">
-            <th v-for="(header, idx) in tableHeaders" :key="idx">
+            <th v-for="(header, idx) in tableHeaders" :key="idx" >
               {{ header }}
             </th>
           </tr>
@@ -205,7 +205,7 @@ export default {
 
     .jobs-inbox {
       height: 100%;
-      width: 50%;
+      width: 40%;
       overflow-y: scroll;
 
       .table {
@@ -213,7 +213,7 @@ export default {
       }
     }
     .job-info_wrapper {
-      width: 50%;
+      width: 60%;
       display: flex;
     }
   }

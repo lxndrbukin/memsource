@@ -17,8 +17,8 @@ export default {
   props: ['job', 'searchReq'],
   methods: {
     truncatedString(string) {
-      if (string.length > 60) {
-        return `${string.substring(0, 59)}...`;
+      if (string.length > 45) {
+        return `${string.substring(0, 44)}...`;
       }
       return string;
     },

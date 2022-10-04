@@ -25,13 +25,11 @@
         </div>
       </div>
       <div class="job-info_message">
-        <span>
-          <h5>Hello Team,</h5>
-          <p>
-            Could you please translate the below file(s) as part of the
-            <b>{{ project.name }}</b> project?
-          </p>
-        </span>
+        <h5>Hello Team,</h5>
+        <p>
+          Could you please complete a <b>{{ jobInfo.workflowStep.name }}</b> of the below file(s) as part of the
+          <b>{{ project.name }}</b> project?
+        </p>
       </div>
       <div v-if="jobInfo.uid" class="job-info_files">
         <b>Files:</b>
@@ -77,12 +75,12 @@ export default {
   }
 
   .job-info_basic {
-    border: $border;
-    border-radius: 10px;
-    background-color: $lighter-grey;
     width: fit-content;
     padding: 10px;
-    width: 220px;
+    width: calc(100% - 20px);
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    
   }
 
   .job-info_basic-line {
@@ -94,6 +92,7 @@ export default {
       width: 120px;
       font-weight: bold;
       margin: 3px 0 3px 0;
+      color: red;
     }
 
     .job-info_basic-line_info {
@@ -101,6 +100,10 @@ export default {
   }
 
   .job-info_message {
+    padding: 10px;
+    margin: 10px 0 10px 0;
+    width: calc(100% - 20px);
+
     h5 {
       width: fit-content;
     }
@@ -111,6 +114,7 @@ export default {
   }
 
   .job-info_files {
+    padding: 10px;
     .job-info_file-links {
       padding: 10px;
       background-color: $lighter-grey;

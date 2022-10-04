@@ -29,40 +29,46 @@
 
     &:hover {
       background-color: $lighter-grey;
-
-      td {
-        border-right: 1px solid #fff;
-      }
     }
 
     td,
     th {
-      border-right: $border;
       border-bottom: $border;
-      padding: 5px;
+      padding: 7px;
+
+      &:first-child {
+        width: 140px;
+      }
 
 
       &:last-child {
         border-right: 0;
       }
     }
+
+    td {
+      &:first-child {
+        text-align: right;
+      }
+    }
   }
 }
 
 .date {
-  display: flex;
+  // display: flex;
   // width: 170px;
 
-  .date-day {
-    width: 32px;
-  }
+  // .date-day {
+  //   min-width: 32px;
+  //   max-width: 37px;
+  // }
 
-  .date-full {
-    width: 50px;
-    text-align: center;
-  }
+  // .date-full {
+  //   width: 50px;
+  //   text-align: center;
+  // }
 
-  .date-time {
+  // .date-time {
     // text-align: center;
-  }
+  // }
 }

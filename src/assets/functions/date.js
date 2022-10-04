@@ -22,10 +22,9 @@ export const date = (newDate) => {
       ? `0${jsonDate.getMinutes()}`
       : jsonDate.getMinutes();
   const date = `
-  <div class="date">
-    <div class="date-day">${days[day]}</div>
-    <div class="date-full">${monthDay}/${month}</div>
-    <div class="date-time">@ ${hour}:${minute}</div>
-  </div>`;
+    <td class="date-day">${days[day]}</td>,
+    <td class="date-full">${monthDay}/${month}</td>
+    <td class="date-time">@ ${hour}:${minute}</td>
+`;
   return date;
 };
