@@ -1,10 +1,11 @@
 <template>
   <div class="jobs">
     <JobFilter
-      :jobOptions="jobOptions"
       :currentCategory="currentCategory"
+      :sortByOption="sortByOption"
       @search="search"
       @setCategory="setCategory"
+      @setSortBy="setSortBy"
     />
     <div class="jobs-inbox_wrapper">
       <div class="jobs-inbox">
@@ -16,7 +17,7 @@
           </tr>
           <JobListItem
             v-for="job in sortedJobList"
-            :key="job.filename"
+            :key="job.uid"
             :job="job"
             @click="selectJob(job)"
             :searchReq="searchRequest"
@@ -48,8 +49,8 @@ export default {
   data() {
     return {
       tableHeaders: ['Name', 'Deadline'],
-      jobOptions: ['All', 'New', 'Accepted', 'Completed'],
-      searchRequest: ' ',
+      searchRequest: '',
+      sortByOption: localStorage.getItem('sortJobsBy'),
       selectedJob: null,
       currentProject: null,
       currentCategory: localStorage.getItem('jobCategory')
@@ -60,9 +61,15 @@ export default {
   computed: {
     ...mapGetters(['jobList', 'projectList']),
     sortedJobList() {
-      const { jobList } = this;
-      return jobList.sort((a, b) => a.filename.localeCompare(b.filename));
-    }
+      const { jobList, sortByOption } = this;
+      if (sortByOption === 'Name') {
+        return jobList.sort((a, b) => a.filename.localeCompare(b.filename));
+      } else if (sortByOption === 'Created') {
+        return jobList.sort((a, b) =>
+          a.dateCreated.localeCompare(b.dateCreated)
+        );
+      }
+    },
   },
   methods: {
     ...mapActions(['fetchProjectsAndJobs']),
@@ -70,7 +77,7 @@ export default {
       this.selectedJob = JSON.parse(JSON.stringify(job));
       const projectList = JSON.parse(JSON.stringify(this.projectList));
       for (let i = 0; i < projectList.length; i++) {
-        projectList[i].jobs.filter(job => {
+        projectList[i].jobs.filter((job) => {
           if (job.filename === this.selectedJob.filename) {
             this.currentProject = projectList[i];
           }
@@ -89,7 +96,12 @@ export default {
       this.searchRequest = searchRequest;
       console.log(this.searchRequest);
       return this.searchRequest;
-    }
+    },
+    setSortBy(sort) {
+      localStorage.setItem('sortJobsBy', sort);
+      this.sortByOption = sort;
+      return this.sortByOption;
+    },
   },
   created() {
     if (this.jobList.length === 0) {
