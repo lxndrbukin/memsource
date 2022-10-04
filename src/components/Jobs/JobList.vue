@@ -48,7 +48,7 @@ export default {
   name: 'JobList',
   data() {
     return {
-      tableHeaders: ['Name', 'Deadline'],
+      tableHeaders: ['Deadline', 'Name', 'Step'],
       searchRequest: '',
       sortByOption: localStorage.getItem('sortJobsBy'),
       selectedJob: null,
@@ -68,6 +68,8 @@ export default {
         return jobList.sort((a, b) =>
           a.dateCreated.localeCompare(b.dateCreated)
         );
+      } else {
+        return jobList;
       }
     },
   },
@@ -203,7 +205,7 @@ export default {
 
     .jobs-inbox {
       height: 100%;
-      width: 40%;
+      width: 50%;
       overflow-y: scroll;
 
       .table {
@@ -211,7 +213,7 @@ export default {
       }
     }
     .job-info_wrapper {
-      width: 60%;
+      width: 50%;
       display: flex;
     }
   }

@@ -1,7 +1,11 @@
 <template>
-  <tr v-if="job.filename.toLowerCase().includes(searchReq.toLowerCase())" class="table-row">
-    <td>{{ truncatedString(job.filename) }}</td>
+  <tr
+    v-if="job.filename.toLowerCase().includes(searchReq.toLowerCase())"
+    class="table-row"
+  >
     <td v-html="deadline(job.dateDue)"></td>
+    <td>{{ truncatedString(job.filename) }}</td>
+    <td>{{ job.workflowStep.name }}</td>
   </tr>
 </template>
 
@@ -13,8 +17,8 @@ export default {
   props: ['job', 'searchReq'],
   methods: {
     truncatedString(string) {
-      if (string.length > 50) {
-        return `${string.substring(0, 49)}...`;
+      if (string.length > 60) {
+        return `${string.substring(0, 59)}...`;
       }
       return string;
     },

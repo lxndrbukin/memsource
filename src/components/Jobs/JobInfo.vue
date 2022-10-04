@@ -12,8 +12,15 @@
         <div class="job-info_basic-line">
           <span class="job-info_basic-line_header">Language:</span>
           <span class="job-info_basic-line_info"
-            >{{ project.sourceLang.toUpperCase() }} <i class="bi bi-arrow-right"></i>
+            >{{ project.sourceLang.toUpperCase() }}
+            <i class="bi bi-arrow-right"></i>
             {{ jobInfo.targetLang.toUpperCase() }}</span
+          >
+        </div>
+        <div class="job-info_basic-line">
+          <span class="job-info_basic-line_header">Step:</span>
+          <span class="job-info_basic-line_info">
+            {{ jobInfo.workflowStep.name }}</span
           >
         </div>
       </div>
@@ -86,6 +93,7 @@ export default {
     .job-info_basic-line_header {
       width: 120px;
       font-weight: bold;
+      margin: 3px 0 3px 0;
     }
 
     .job-info_basic-line_info {
